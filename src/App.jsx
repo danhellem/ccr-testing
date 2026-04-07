@@ -16,7 +16,8 @@ export default function App() {
     ? products
     : products.filter(p => p.category === activeCategory)
 
-  const addToCart = (product) => {   
+  const addToCart = (product) => {
+    console.log('Adding product to cart:', product)
     setCart(prev => {
       const existing = prev.find(item => item.id === product.id)
       if (existing) {
