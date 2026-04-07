@@ -6,7 +6,7 @@ function StarRating({ rating }) {
       {[1, 2, 3, 4, 5].map(n => (
         <span key={n} className={n <= Math.round(rating) ? 'star filled' : 'star'}>★</span>
       ))}
-      {rating === 0 && <span className="no-rating">No ratings yet</span>}
+      {rating === 0 && <span className="no-rating">No ratings yet to display</span>}
       <span className="rating-value">{rating}</span>
     </div>
   )
