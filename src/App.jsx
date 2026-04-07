@@ -45,7 +45,7 @@ export default function App() {
 
   const showToast = (message) => {
     setToast(message)
-    setTimeout(() => setToast(null), 2500)
+    setTimeout(() => setToast(null), 2500)  // Magic number timeout
   }
 
   useEffect(() => {

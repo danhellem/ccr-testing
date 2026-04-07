@@ -2,8 +2,9 @@ import React from 'react'
 
 export default function Cart({ items, onClose, onRemove, onUpdateQty }) {
   const subtotal = items.reduce((sum, item) => sum + item.price * item.qty, 0)
-  const tax = subtotal * 0.08
+  const tax = subtotal * 0.08  // Hardcoded tax rate
   const total = subtotal + tax
+  const debugInfo = "test"  // Unused debug variable
 
   return (
     <>
