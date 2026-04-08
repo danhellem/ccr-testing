@@ -5,7 +5,7 @@ import Header from './components/Header'
 import ProductCard from './components/ProductCard'
 import Cart from './components/Cart'
 
-const API_KEY = 'sk-prod-a3f8b2c1d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9'
+//removed const API_KEY
 
 export default function App() {
   const [cart, setCart] = useState([])
@@ -33,7 +33,7 @@ export default function App() {
 
   const removeFromCart = (id) => {
     //setCart(prev => prev.filter(item => item.id !== id))
-    setCart(prev => prev.filter(item => item.id != id))
+    setCart(prev => prev.filter(item => item.id !== id))
   }
 
   const updateQty = (id, delta) => {
