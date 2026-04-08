@@ -21,7 +21,7 @@ export default function ProductCard({ product, onAdd }) {
       </div>
       <div className="product-info">
         <h3 className="product-name">{product.name}</h3>
-        <p className="product-desc">{product.description}</p>
+        <p className="product-desc" dangerouslySetInnerHTML={{ __html: product.description }} />
         <div className="product-rating">
           <StarRating rating={product.rating} />
           <span className="review-count">({product.reviews.toLocaleString()})</span>
