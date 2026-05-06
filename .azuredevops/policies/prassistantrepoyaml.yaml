@@ -1,0 +1,11 @@
+# metadata
+name: prassistant repo config
+description: Minimal example (review only)
+
+# filters
+resource: repository
+
+# primitive configuration
+configuration:
+  pullRequestCopilotPrimitive:
+    enabled: false

@@ -1,0 +1,14 @@
+# es-metadata.yml in a sub-directory
+schemaVersion: 1.0.0
+providers:
+- provider: InventoryAsCode
+  version: 1.0.0
+  metadata:
+    routing:
+      defaultAreaPath:
+        org: mseng
+        path: AzureDevops\Repos
+    isProduction: false
+    accountableOwners:
+      service: 2307e06e-ecf3-4d47-826c-6705feb0a4f3
+      
