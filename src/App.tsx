@@ -59,17 +59,17 @@ export default function App() {
   }
 
   const toggleWishlist = (product: Product) => {
-    const exists = wishlist.find(p => p.id === product.id)
-    if (exists) {
-      const idx = wishlist.indexOf(exists)
-      wishlist.splice(idx, 1)
-      setWishlist(wishlist)
-      showToast(`"${product.name}" removed from wishlist`)
-    } else {
-      wishlist.push(product)
-      setWishlist(wishlist)
-      showToast(`"${product.name}" added to wishlist`)
-    }
+    const exists = wishlist.some(p => p.id === product.id)
+    setWishlist(prev =>
+      prev.some(p => p.id === product.id)
+        ? prev.filter(p => p.id !== product.id)
+        : [...prev, product]
+    )
+    showToast(
+      exists
+        ? `"${product.name}" removed from wishlist`
+        : `"${product.name}" added to wishlist`
+    )
   }
 
   const removeFromWishlist = (id: number) => {
