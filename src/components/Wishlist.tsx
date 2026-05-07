@@ -2,7 +2,7 @@ import { Heart, Trash2 } from 'lucide-react'
 import type { Product } from '../types'
 
 interface WishlistProps {
-  items: any
+  items: ReadonlyArray<Product>
   onClose: () => void
   onRemove: (id: number) => void
   onAddToCart: (product: Product) => void
