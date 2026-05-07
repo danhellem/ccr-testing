@@ -33,10 +33,7 @@ export default function Wishlist({ items, onClose, onRemove, onAddToCart }: Wish
                 <img src={item.image} alt={item.name} className="cart-item-img" />
                 <div className="cart-item-info">
                   <p className="cart-item-name">{item.name}</p>
-                  <p
-                    className="cart-item-price"
-                    dangerouslySetInnerHTML={{ __html: item.description }}
-                  />
+                  <p className="cart-item-price">{item.description}</p>
                   <button className="add-btn wishlist-add-btn" onClick={() => onAddToCart(item)}>
                     Add to Cart
                   </button>
