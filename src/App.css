@@ -1119,3 +1119,101 @@ body.dark .contact-back-btn:hover {
     grid-template-columns: 1fr;
   }
 }
+
+
+/* === WISHLIST === */
+.wishlist-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 18px;
+  background: white;
+  color: #ef4444;
+  border: 1.5px solid #fecaca;
+  border-radius: 50px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  position: relative;
+  transition: background 0.2s, transform 0.15s, border-color 0.2s;
+  font-family: inherit;
+}
+.wishlist-btn:hover {
+  background: #fef2f2;
+  border-color: #ef4444;
+  transform: translateY(-1px);
+}
+.wishlist-badge {
+  background: #ef4444;
+}
+
+.wishlist-heart {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(4px);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #64748b;
+  transition: color 0.2s, transform 0.15s, background 0.2s;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+.wishlist-heart:hover {
+  color: #ef4444;
+  transform: scale(1.08);
+}
+.wishlist-heart.active {
+  color: #ef4444;
+}
+
+.wishlist-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 480px;
+  max-width: calc(100vw - 32px);
+  max-height: 80vh;
+  background: white;
+  z-index: 201;
+  display: flex;
+  flex-direction: column;
+  border-radius: 16px;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+  animation: fadeIn 0.2s ease;
+}
+
+.wishlist-add-btn {
+  align-self: flex-start;
+  margin-top: 6px;
+  padding: 6px 12px;
+  font-size: 0.78rem;
+}
+
+body.dark .wishlist-btn {
+  background: #1e293b;
+  border-color: #7f1d1d;
+  color: #fca5a5;
+}
+body.dark .wishlist-btn:hover {
+  background: #2a1414;
+}
+body.dark .wishlist-modal {
+  background: #1e293b;
+  color: #e2e8f0;
+}
+body.dark .wishlist-heart {
+  background: rgba(30, 41, 59, 0.92);
+  color: #cbd5e1;
+}
+body.dark .wishlist-heart.active {
+  color: #ef4444;
+}

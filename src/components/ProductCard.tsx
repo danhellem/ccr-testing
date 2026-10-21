@@ -1,3 +1,4 @@
+import { Heart } from 'lucide-react'
 import type { Product } from '../types'
 
 interface StarRatingProps {
@@ -18,14 +19,24 @@ function StarRating({ rating }: StarRatingProps) {
 interface ProductCardProps {
   product: Product
   onAdd: (product: Product) => void
+  onToggleWishlist: (product: Product) => void
+  inWishlist: boolean
 }
 
-export default function ProductCard({ product, onAdd }: ProductCardProps) {
+export default function ProductCard({ product, onAdd, onToggleWishlist, inWishlist }: ProductCardProps) {
   return (
     <div className="product-card">
       <div className="product-image-wrap">
         <img src={product.image} alt={product.name} className="product-image" />
         <span className="category-badge">{product.category}</span>
+        <button
+          className={`wishlist-heart${inWishlist ? ' active' : ''}`}
+          onClick={() => onToggleWishlist(product)}
+          aria-label={inWishlist ? 'Remove from wishlist' : 'Add to wishlist'}
+          aria-pressed={inWishlist}
+        >
+          <Heart size={20} fill={inWishlist ? 'currentColor' : 'none'} />
+        </button>
       </div>
       <div className="product-info">
         <h3 className="product-name">{product.name}</h3>

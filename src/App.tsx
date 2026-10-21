@@ -5,6 +5,7 @@ import type { Category } from './data/products'
 import Header from './components/Header'
 import ProductCard from './components/ProductCard'
 import Cart from './components/Cart'
+import Wishlist from './components/Wishlist'
 import Footer from './components/Footer'
 import ContactPage from './components/ContactPage'
 import type { Product, CartItem } from './types'
@@ -12,6 +13,8 @@ import type { Product, CartItem } from './types'
 export default function App() {
   const [cart, setCart] = useState<CartItem[]>([])
   const [cartOpen, setCartOpen] = useState(false)
+  const [wishlist, setWishlist] = useState<Product[]>([])
+  const [wishlistOpen, setWishlistOpen] = useState(false)
   const [activeCategory, setActiveCategory] = useState<Category>('All')
   const [toast, setToast] = useState<string | null>(null)
   const [darkMode, setDarkMode] = useState<boolean>(() => localStorage.getItem('theme') === 'dark')
@@ -55,6 +58,24 @@ export default function App() {
     )
   }
 
+  const toggleWishlist = (product: Product) => {
+    const exists = wishlist.some(p => p.id === product.id)
+    setWishlist(prev =>
+      prev.some(p => p.id === product.id)
+        ? prev.filter(p => p.id !== product.id)
+        : [...prev, product]
+    )
+    showToast(
+      exists
+        ? `"${product.name}" removed from wishlist`
+        : `"${product.name}" added to wishlist`
+    )
+  }
+
+  const removeFromWishlist = (id: number) => {
+    setWishlist(prev => prev.filter(p => p.id !== id))
+  }
+
   const showToast = (message: string) => {
     setToast(message)
     setTimeout(() => setToast(null), 2500)
@@ -73,7 +94,9 @@ export default function App() {
     <div className="app">
       <Header
         cartCount={cartCount}
+        wishlistCount={wishlist.length}
         onCartOpen={() => setCartOpen(true)}
+        onWishlistOpen={() => setWishlistOpen(true)}
         darkMode={darkMode}
         onToggleTheme={toggleTheme}
       />
@@ -106,7 +129,13 @@ export default function App() {
 
             <div className="product-grid">
               {filtered.map(product => (
-                <ProductCard key={product.id} product={product} onAdd={addToCart} />
+                <ProductCard
+                  key={product.id}
+                  product={product}
+                  onAdd={addToCart}
+                  onToggleWishlist={toggleWishlist}
+                  inWishlist={wishlist.some(p => p.id === product.id)}
+                />
               ))}
             </div>
           </>
@@ -119,6 +148,15 @@ export default function App() {
           onClose={() => setCartOpen(false)}
           onRemove={removeFromCart}
           onUpdateQty={updateQty}
+        />
+      )}
+
+      {wishlistOpen && (
+        <Wishlist
+          items={wishlist}
+          onClose={() => setWishlistOpen(false)}
+          onRemove={removeFromWishlist}
+          onAddToCart={addToCart}
         />
       )}
 
